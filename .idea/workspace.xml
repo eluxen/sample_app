@@ -55,7 +55,16 @@
       <file leaf-file-name="about.html.erb" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/views/static_pages/about.html.erb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="15" column="7" selection-start="446" selection-end="446" vertical-scroll-proportion="0.28553298" vertical-offset="0" max-vertical-offset="788">
+            <state line="7" column="4" selection-start="311" selection-end="311" vertical-scroll-proportion="0.13324873" vertical-offset="0" max-vertical-offset="788">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="application.html.erb" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/views/layouts/application.html.erb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="3" column="73" selection-start="103" selection-end="103" vertical-scroll-proportion="-1.875" vertical-offset="0" max-vertical-offset="300">
               <folding />
             </state>
           </provider>
@@ -82,7 +91,7 @@
       <file leaf-file-name="help.html.erb" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/views/static_pages/help.html.erb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="15" column="7" selection-start="416" selection-end="416" vertical-scroll-proportion="-9.375" vertical-offset="0" max-vertical-offset="315">
+            <state line="7" column="4" selection-start="281" selection-end="281" vertical-scroll-proportion="-4.375" vertical-offset="0" max-vertical-offset="195">
               <folding />
             </state>
           </provider>
@@ -91,7 +100,7 @@
       <file leaf-file-name="home.html.erb" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/views/static_pages/home.html.erb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="4" column="65" selection-start="125" selection-end="125" vertical-scroll-proportion="-2.5" vertical-offset="0" max-vertical-offset="300">
+            <state line="6" column="4" selection-start="177" selection-end="177" vertical-scroll-proportion="-3.75" vertical-offset="0" max-vertical-offset="180">
               <folding />
             </state>
           </provider>
@@ -122,6 +131,7 @@
         <option value="$PROJECT_DIR$/config/routes.rb" />
         <option value="$PROJECT_DIR$/app/controllers/static_pages_controller.rb" />
         <option value="$PROJECT_DIR$/spec/requests/static_pages_spec.rb" />
+        <option value="$PROJECT_DIR$/app/views/layouts/application.html.erb" />
         <option value="$PROJECT_DIR$/app/views/static_pages/home.html.erb" />
         <option value="$PROJECT_DIR$/app/views/static_pages/help.html.erb" />
         <option value="$PROJECT_DIR$/app/views/static_pages/about.html.erb" />
@@ -261,6 +271,10 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="views" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="layouts" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -640,23 +654,30 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/layouts/application.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="3" column="73" selection-start="103" selection-end="103" vertical-scroll-proportion="-1.875" vertical-offset="0" max-vertical-offset="300">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/views/static_pages/home.html.erb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="4" column="65" selection-start="125" selection-end="125" vertical-scroll-proportion="-2.5" vertical-offset="0" max-vertical-offset="300">
+        <state line="6" column="4" selection-start="177" selection-end="177" vertical-scroll-proportion="-3.75" vertical-offset="0" max-vertical-offset="180">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/views/static_pages/help.html.erb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="15" column="7" selection-start="416" selection-end="416" vertical-scroll-proportion="-9.375" vertical-offset="0" max-vertical-offset="315">
+        <state line="7" column="4" selection-start="281" selection-end="281" vertical-scroll-proportion="-4.375" vertical-offset="0" max-vertical-offset="195">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/views/static_pages/about.html.erb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="15" column="7" selection-start="446" selection-end="446" vertical-scroll-proportion="0.28553298" vertical-offset="0" max-vertical-offset="788">
+        <state line="7" column="4" selection-start="311" selection-end="311" vertical-scroll-proportion="0.13324873" vertical-offset="0" max-vertical-offset="788">
           <folding />
         </state>
       </provider>
