@@ -1,7 +1,15 @@
 require 'spec_helper'
 
 describe "AuthenticationPages" do
+	before { User.delete_all }
 	subject { page }
+
+	describe "anonymous user" do 
+		before { visit root_path}
+		it { should_not have_link('Profile') }
+		it { should_not have_link('Settings') } 
+		it { should_not have_link('Sign out') }
+	end
 
 	describe "signin" do
 		before { visit signin_path}
@@ -90,17 +98,58 @@ describe "AuthenticationPages" do
 					it "should render the desired protected page" do
 						expect(page).to have_title('Edit user')
 					end
+
+					describe "when signing in again" do
+						before do
+							click_link "Sign out"
+							visit signin_path
+							fill_in "Email",    with: user.email
+							fill_in "Password", with: user.password
+							click_button "Sign in"
+						end
+
+						it "should render the default (profile) page" do
+							expect(page).to have_title(user.name)
+						end
+					end
 				end
 			end
-			describe "as non-admin user" do
-				let(:user) { FactoryGirl.create(:user) }
-				let(:non_admin) { FactoryGirl.create(:user) }
-				before { valid_signin non_admin, no_capybara: true }
+		end
+		describe "for signed-in users" do
+			let(:user) { FactoryGirl.create(:user) }
+			before { valid_signin(user, no_capybara:true) }
 
-				describe "submitting a DELETE request to the Users#destroy action" do
-					before { delete user_path(user) }
-					specify { expect(response).to redirect_to(root_url) }
-				end
+			describe "when attempting to get users#new" do
+				before { get new_user_path }
+				specify { expect(response).to redirect_to(root_url) }
+			end
+
+			describe "when attempting to create a new user" do
+				let(:params) { {user: {name:"ey lx", email:"no@gmail.com", password:'1qaz1qaz', password_confirmation:'1qaz1qaz'}}}
+				before { post users_path(params)}
+				specify { expect(response).to redirect_to(root_url) }
+			end
+		end
+		describe "for admin users" do
+			let(:user) do 
+				admin_user = FactoryGirl.create(:user)
+				admin_user.admin = true
+				admin_user
+			end
+			before { valid_signin(user, no_capybara:true) }
+
+			specify "when attempting to destroy themselfs" do
+				expect { delete user_path(user)}.to_not change(User, :count)
+			end
+		end
+		describe "as non-admin user" do
+			let(:user) { FactoryGirl.create(:user) }
+			let(:non_admin) { FactoryGirl.create(:user) }
+			before { valid_signin non_admin, no_capybara: true }
+
+			describe "submitting a DELETE request to the Users#destroy action" do
+				before { delete user_path(user) }
+				specify { expect(response).to redirect_to(root_url) }
 			end
 		end
 	end
