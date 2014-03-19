@@ -15,44 +15,91 @@ describe "Static pages" do
 
     it_should_behave_like "all static pages"
     it { should_not have_title('| Home') }
+
+    describe "for signed-in users" do
+      let(:user) { FactoryGirl.create(:user) }
+
+      describe "with multiple feeds" do
+        before do
+          31.times { FactoryGirl.create(:micropost, user: user) }
+          valid_signin user
+          visit root_path
+        end
+
+        it "should render the user's feed" do
+          user.feed.page(1).each do |item|
+            expect(page).to have_selector("li##{item.id}", text: item.content)
+          end
+        end
+        it { should have_content("31 microposts")}
+        it { should have_selector("div.pagination") }
+      end
+
+      describe "with single feed" do
+        before do
+         FactoryGirl.create(:micropost, user: user, content: "Dolor sit amet")
+         valid_signin user
+         visit root_path
+       end
+       it { should have_content("1 micropost")}
+       it { should_not have_content("microposts")}
+     end
+
+     describe "delete links" do
+      describe "own micropost" do
+        before do
+          FactoryGirl.create(:micropost, user: user)
+          valid_signin user
+          visit root_path
+        end
+        it {should have_link('delete') }
+      end
+      pending "reason" "micropost own by another user" do
+        # before do
+        #   post = FactoryGirl.create(:micropost, user: FactoryGirl.create(:user))
+        # end
+      end
+    end
+
   end
+end
 
-  describe "Help page" do
-    before { visit help_path }
-    let(:heading) {'Help'}
-    let(:page_title) {'Help'}
+describe "Help page" do
+  before { visit help_path }
+  let(:heading) {'Help'}
+  let(:page_title) {'Help'}
 
-    it_should_behave_like "all static pages"
-  end
+  it_should_behave_like "all static pages"
+end
 
-  describe "About page" do
-    before { visit about_path }
-    let(:heading) {'About'}
-    let(:page_title) {'About'}
+describe "About page" do
+  before { visit about_path }
+  let(:heading) {'About'}
+  let(:page_title) {'About'}
 
-    it_should_behave_like "all static pages"
-  end
+  it_should_behave_like "all static pages"
+end
 
-  describe "Contact page" do
-    before { visit contact_path }
-    let(:heading) {'Contact'}
-    let(:page_title) {'Contact'}
+describe "Contact page" do
+  before { visit contact_path }
+  let(:heading) {'Contact'}
+  let(:page_title) {'Contact'}
 
-    it_should_behave_like "all static pages"
-  end
+  it_should_behave_like "all static pages"
+end
 
-  it "should have the right links on the layout" do
-    visit root_path
-    click_link "About"
-    expect(page).to have_title(full_title('About Us'))
-    click_link "Help"
-    expect(page).to have_title(full_title('Help'))
-    click_link "Contact"
-    expect(page).to have_title(full_title('Contact'))
-    click_link "Home"
-    click_link "Sign up now!"
-    expect(page).to have_title(full_title('Sign up'))
-    click_link "sample app"
-    expect(page).to have_title(full_title(''))
-  end
+it "should have the right links on the layout" do
+  visit root_path
+  click_link "About"
+  expect(page).to have_title(full_title('About Us'))
+  click_link "Help"
+  expect(page).to have_title(full_title('Help'))
+  click_link "Contact"
+  expect(page).to have_title(full_title('Contact'))
+  click_link "Home"
+  click_link "Sign up now!"
+  expect(page).to have_title(full_title('Sign up'))
+  click_link "sample app"
+  expect(page).to have_title(full_title(''))
+end
 end
